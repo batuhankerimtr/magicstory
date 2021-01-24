@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#fffc00',
         width: '90%',
         paddingVertical: 25,
-        borderRadius: 6,
+        borderRadius:  20,
         justifyContent: 'center'
     },
     shareSnapBtnText: {
@@ -74,8 +74,8 @@ const styles = StyleSheet.create({
     shareBtnSmall: {
         backgroundColor: '#3D3D65',
         padding: 20,
-        borderRadius: 10
-    },
+        borderRadius: 20
+        },
     swipeupText: {
         color: '#FFF',
         fontFamily: 'SF Compact Rounded',

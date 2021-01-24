@@ -23,7 +23,7 @@ const Stack = createStackNavigator();
 const Router = () => {
     return (
         <NavigationContainer>
-            <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName="Main">
+            <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName="Splash">
                 <Stack.Screen name="Splash" component={SplashScreen} />
                 <Stack.Screen name="Landing" component={LandingScreen} />
                 <Stack.Screen name="Main" component={MainScreen} />
