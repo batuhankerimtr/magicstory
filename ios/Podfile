@@ -5,8 +5,12 @@ platform :ios, '10.0'
 
 target 'magicstory' do
   config = use_native_modules!
-
+  pod 'SnapSDK', :subspecs => ['SCSDKCreativeKit']
   use_react_native!(:path => config["reactNativePath"])
+
+  pod 'RNReactNativeHapticFeedback', :path => '../node_modules/react-native-haptic-feedback'
+
+  pod 'RNStoryShare', :path => '../node_modules/react-native-story-share/ios'
 
   target 'magicstoryTests' do
     inherit! :complete
