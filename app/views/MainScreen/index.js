@@ -20,6 +20,10 @@ const options = {
 const SplashScreen = (props) => {
   //handleViewRef = ref => this.view = ref;
   const handleViewRef = useRef(null);
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 
   const [count, setCount] = useState(700);
   const [message, setMessage] = useState(null);
@@ -33,12 +37,23 @@ const SplashScreen = (props) => {
     ReactNativeHapticFeedback.trigger("impactHeavy", options);
     await axios.get('https://magicstory-web.vercel.app/getMagic')
     .then(function (response) {
+<<<<<<< Updated upstream
       props.navigation.navigate('Result', {message: response.data.message})
+=======
+      setMessage(response.data.message)
+      props.navigation.navigate('Result', {message: message})
+>>>>>>> Stashed changes
       handleViewRef.current.pulse(700)
     })
     .catch(function (error) {
       console.log(error);
     })
+<<<<<<< Updated upstream
+=======
+     
+    //setTimeout(() => , 3000)
+    //handleViewRef.current.pulse(300)
+>>>>>>> Stashed changes
   }
   return (
     <SafeAreaView style={styles.container}>
