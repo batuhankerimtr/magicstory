@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     },
     messageText: {
         color: "#FFF",
-        fontFamily: 'SF Compact Rounded',
+        fontFamily:  Platform.OS == "ios" ? 'SF Compact Rounded': 'SF-Compact-Rounded-Semibold',
         fontWeight: '600',
         fontSize: 18
     },
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     },
     shareSnapBtnText: {
         textAlign: 'center',
-        fontFamily: 'SF Compact Rounded',
+        fontFamily:  Platform.OS == "ios" ? 'SF Compact Rounded': 'SF-Compact-Rounded-Semibold',
         fontWeight: '600',
         fontSize: 16
     },
@@ -79,9 +79,11 @@ const styles = StyleSheet.create({
     swipeupText: {
         color: '#FFF',
         fontFamily: 'SF Compact Rounded',
+        fontFamily:  Platform.OS == "ios" ? 'SF Compact Rounded': 'SF-Compact-Rounded-Bold',
          fontWeight: '800',
          fontSize: 20,
          alignSelf: 'center',
+         textAlign:'center',
     }
 })
 

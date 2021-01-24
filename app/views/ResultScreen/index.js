@@ -1,11 +1,12 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, useRef } from "react";
 import {
   View,
   SafeAreaView,
   Text,
   Image,
   Pressable,
-  StatusBar
+  StatusBar,
+  Linking
 } from 'react-native';
 import styles from './style'
 import ReactNativeHapticFeedback from "react-native-haptic-feedback";
@@ -21,19 +22,36 @@ const options = {
 
 
 const SplashScreen = (props) => {
-  handleViewRef = ref => this.view = ref;
+  const handleViewRef = useRef(null);
+
 
   const [count, setCount] = useState(700);
   const [sticker, setSticker] = useState(null)
   const [oImage, setoImage] = useState(false)
 
   useEffect(() => {
-    this.view.capture().then(uri => {
+
+    handleViewRef.current.capture().then(uri => {
       setSticker("data:image/png;base64," + uri)
     });
   })
 
+  const shareInstagram = () => {
+    RNStoryShare.isInstagramAvailable()
+    .then(isAvailable => {
 
+      if(isAvailable){
+        RNStoryShare.shareToInstagram({
+          type: RNStoryShare.BASE64, // or RNStoryShare.FILE
+          attributionLink: 'https://magicstory.app',
+          stickerAsset: sticker,
+          backgroundBottomColor: '#1B1B2F',
+          backgroundTopColor: '#3D3D65'
+        });
+      }
+    })
+    .catch(e => console.log(e));
+  }
   const shareSnapchat = () => {
     if (oImage) {
       RNStoryShare.isSnapchatAvailable()
@@ -45,6 +63,10 @@ const SplashScreen = (props) => {
               attributionLink: 'https://magicstory.app',
               stickerAsset: sticker,
               media: "photo", // or "video"
+              stickerOptions: {
+                height: 900,
+                width: 900
+              }
             });
           } else {
             alert("Réessayez s'il vous plaît !")
@@ -61,11 +83,11 @@ const SplashScreen = (props) => {
       <StatusBar barStyle="light-content" />
       <SafeAreaView style={styles.container}>
 
-        <ViewShot ref={this.handleViewRef} style={{ width: '100%', justifyContent: 'center', alignItems: 'center' }} options={{ format: "png", quality: 1, result: "base64" }} >
+        <ViewShot ref={handleViewRef} style={{ width: '100%', justifyContent: 'center', alignItems: 'center' }} options={{ format: "png", quality: 1, result: "base64" }} >
           <View style={styles.capture}>
             <Image onLoad={() => setoImage(true)} style={styles.logo} source={require('../../../assets/img/icon.png')} />
             <View style={styles.messageContainer}>
-              <Text style={styles.messageText}>Aujourd'hui un animal va rentrer par la cheminée</Text>
+              <Text style={styles.messageText}>{props.route.params.message}</Text>
             </View>
           </View>
             <Text style={styles.swipeupText}>SWIPE UP POUR DECOUVRIR TON AVENIR</Text>
@@ -77,14 +99,11 @@ const SplashScreen = (props) => {
             <Text style={styles.shareSnapBtnText}>Partager sur Snapchat</Text>
           </Pressable>
           <View style={styles.otherActions}>
-            <Pressable style={styles.shareBtnSmall}>
+            <Pressable onPress={() => shareInstagram()} style={styles.shareBtnSmall}>
               <Icon name="instagram" size={28} color="#FFF" />
             </Pressable>
-            <Pressable style={styles.shareBtnSmall}>
+            <Pressable onPress={() => props.navigation.goBack()}  style={styles.shareBtnSmall}>
               <Icon name="redo-alt" size={28} color="#FFF" />
-            </Pressable>
-            <Pressable style={styles.shareBtnSmall}>
-              <Icon name="save" size={28} color="#FFF" />
             </Pressable>
           </View>
         </View>

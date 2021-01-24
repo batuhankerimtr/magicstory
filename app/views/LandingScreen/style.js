@@ -20,12 +20,12 @@ const styles = StyleSheet.create({
     },
     continueBtnText: {
         color: '#FFF',
-        fontFamily: 'SF Compact Rounded',
+        fontFamily:  Platform.OS == "ios" ? 'SF Compact Rounded': 'SF-Compact-Rounded-Semibold',
         fontWeight: '600'
     },
     acceptText: {
         color: '#FFF',
-        fontFamily: 'SF Compact Rounded',
+        fontFamily:  Platform.OS == "ios" ? 'SF Compact Rounded': 'SF-Compact-Rounded-Regular',
         fontWeight: '400',
         width: '70%',
         fontSize: 10,
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     },
     linkText: {
         color: '#FFF',
-        fontFamily: 'SF Compact Rounded',
+        fontFamily:  Platform.OS == "ios" ? 'SF Compact Rounded': 'SF-Compact-Rounded-Bold',
         fontWeight: '500',
         fontSize: 14,
         textAlign: 'center',
