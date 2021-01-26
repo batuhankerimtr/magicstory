@@ -4,10 +4,12 @@ import {
   SafeAreaView,
   Text,
   Image,
-  Pressable
+  Pressable,
+  Linking
 } from 'react-native';
 import styles from './style'
 import ReactNativeHapticFeedback from "react-native-haptic-feedback";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 const options = {
@@ -19,8 +21,9 @@ const options = {
 
 
 const SplashScreen = (props) => {
-  const nextBtn = () => {
+  const nextBtn = async() => {
     ReactNativeHapticFeedback.trigger("notificationSuccess", options);
+    await AsyncStorage.setItem('@landing', "seen")
     props.navigation.replace('Main')
   }
 
@@ -31,8 +34,8 @@ const SplashScreen = (props) => {
       </Pressable>
       <Text style={styles.acceptText}>En continuant vous acceptez les Conditions Générales & Privacy de Magic Story.</Text>
       <View style={styles.linkGroup}>
-        <Pressable style={styles.link}><Text style={styles.linkText}>C.G.U</Text></Pressable>
-        <Pressable style={styles.link}><Text style={styles.linkText}>Privacy</Text></Pressable>
+        <Pressable onPress={() => Linking.openURL("https://magicstory.vercel.app/terms")} style={styles.link}><Text style={styles.linkText}>C.G.U</Text></Pressable>
+        <Pressable onPress={() => Linking.openURL("https://magicstory.vercel.app/privacy")} style={styles.link}><Text style={styles.linkText}>Privacy</Text></Pressable>
       </View>
     </SafeAreaView>
   );

@@ -6,13 +6,23 @@ import {
   Image
 } from 'react-native';
 import styles from './style'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // import * as Animatable from 'react-native-animatable';
 
 const SplashScreen = (props) => {
+  const changePage = async () => {
+    const landing = await AsyncStorage.getItem('@landing')
+    if(landing =="seen"){
+      props.navigation.replace("Main")
+    }else{
+      props.navigation.replace("Landing")
+    }
+
+  }
   useEffect(() => {
     setTimeout(() => {
-      props.navigation.replace("Landing")
+      changePage()
     }, 1000)
   }, [])
   return (
