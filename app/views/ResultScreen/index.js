@@ -43,7 +43,7 @@ const SplashScreen = (props) => {
       if(isAvailable){
         RNStoryShare.shareToInstagram({
           type: RNStoryShare.BASE64, // or RNStoryShare.FILE
-          attributionLink: 'https://magicstory.app',
+          attributionLink: 'https://magicstory.vercel.app/download',
           stickerAsset: sticker,
           backgroundBottomColor: '#1B1B2F',
           backgroundTopColor: '#3D3D65'
@@ -60,7 +60,7 @@ const SplashScreen = (props) => {
           if (isAvailable) {
             RNStoryShare.shareToSnapchat({
               type: RNStoryShare.BASE64, // or RNStoryShare.FILE
-              attributionLink: 'https://magicstory.app',
+              attributionLink: 'https://magicstory.vercel.app/download',
               stickerAsset: sticker,
               media: "photo", // or "video"
               stickerOptions: {
